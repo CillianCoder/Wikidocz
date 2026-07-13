@@ -1,0 +1,483 @@
+/*
+ Theme Name:   GeneratePress Child
+ Theme URI:    https://generatepress.com
+ Description:  Default GeneratePress child theme
+ Author:       Tom Usborne
+ Author URI:   https://tomusborne.com
+ Template:     generatepress
+ Version:      0.1
+*/
+
+input[type="search"] {
+    border-radius: 8px;
+	background-color: #F3F4F6/* Change 8px to your desired roundness */
+}
+/* Make the footer logo image rounded */
+.footer-widgets img,
+.site-footer img {
+    border-radius: 8px;
+		width: 220px;
+	/* Adjust 12px to your liking (use 50% for a perfect circle) */
+    object-fit: cover;
+}
+
+/*footer nav gap*/
+.widget ul li {
+    margin-top: -5px;
+}
+
+.widget-title {
+		margin-bottom: 15px;
+}
+
+/* Adjust footer columns to a 2fr 1fr 1fr 1fr layout */
+@media (min-width: 769px) {
+    .site-footer .footer-widgets-container .inside-footer-widgets {
+        display: grid !important;
+        grid-template-columns: 2fr 1fr 1fr 1fr !important;
+        gap: 40px; /* Adjust spacing between columns if needed */
+    }
+
+    /* Reset default GeneratePress column width behaviors */
+    .site-footer .footer-widgets-container .inside-footer-widgets > div {
+        width: 100% !important;
+        float: none !important;
+    }
+}
+
+
+/* Select and style the entire footer bar wrapper */
+.site-info {
+    background-color: #0D1B2A;
+}
+
+/* Force both left and right text elements to look uniform */
+.copyright-bar {
+    color: #526173;
+    font-size: 13px;
+}
+
+/* Force the interior layout to behave as a single clean row */
+.site-info .inside-site-info {
+    display: flex;
+    justify-content: space-between; /* Pushes text left and menu right */
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/* Hide the default built-in GeneratePress text link entirely */
+.copyright-bar a {
+    display: none !important;
+}
+
+/* Change and style the text explicitly for Wikidocz */
+.copyright-bar::before {
+    content: "© 2026 Wikidocz. All rights reserved.";
+    color: #526173 !important;
+    font-size: 13px;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Hide the leftover default string piece */
+.copyright-bar {
+    font-size: 0 !important; /* Wipes out the '• Built with' default text */
+}
+/* Select and style the entire footer bar wrapper */
+.site-info {
+    background-color: #0D1B2A; /* Your premium dark blue */
+    padding: 20px 0;
+    position: relative;
+}
+
+/* Create the beautiful 60% centered divider line above it */
+.site-info::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 10%;  /* Leaves 20% space on the left */
+    right: 10%; /* Leaves 20% space on the right */
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle light line */
+
+
+}
+
+
+/* Force the interior layout to behave as a single clean row */
+.site-info .inside-site-info {
+    display: flex;
+    justify-content: space-between; /* Pushes copyright left and menu right */
+    align-items: center;
+    max-width: 1200px; /* Adjust to match your main content width */
+    margin: 0 auto;
+    padding: 0 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+
+/* Responsive Divider Line: 100% on mobile, shrinks on desktop */
+.site-info::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle light line */
+
+    /* Mobile-first: start at full 100% width */
+    left: 0;
+    right: 0;
+}
+
+
+    /* Force all links to stay inline */
+    .main-navigation li,
+    .main-navigation .main-nav ul li a {
+			line-height: 30px !important;
+    }
+
+
+/* When the window grows large (Desktop), pull the edges in */
+@media (min-width: 769px) {
+    .site-info::before {
+        left: 10%;
+        right: 10%;
+    }
+}
+
+/* Lock down the exact search bar element so it does not change on click */
+input[type="search"]:focus {
+    color: inherit !important;
+    background-color: transparent !important;
+    border-color: #e2e8f0 !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+
+/* Apply changes only to mobile and tablet screens */
+@media (max-width: 1024px) {
+    /* Hide mobile menu toggle completely */
+    #site-navigation .menu-toggle,
+    .main-navigation .menu-toggle {
+        display: none !important;
+    }
+
+    /* Force the menu block to be visible and flexed */
+    .main-navigation ul,
+    .main-navigation .main-nav ul {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: left !important;
+    }
+
+    /* Force all links to stay inline */
+    .main-navigation li,
+    .main-navigation .main-nav ul li a {
+        display: flex !important;
+			line-height: 30px !important;
+    }
+}
+
+/* Hide navigation bar completely on mobile only */
+@media (max-width: 768px) {
+    #site-navigation,
+    .main-navigation,
+    .mobile-menu-control-wrapper {
+        display: none !important;
+    }
+
+	.inside-header {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+    }
+
+    .site-logo,
+    .header-image,
+    .site-branding {
+        margin: 0 auto !important;
+        float: none !important;
+    }
+}
+
+
+
+/*_______hero section_________*/
+
+/* Category tag pill */
+.hero-cat { margin-bottom: 0; }
+.hero-cat-link {
+  border-radius: 999px;
+  padding: 7px 12px;
+  font-family: Poppins, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-block;
+  text-decoration: none;
+}
+.hero-cat-link:hover { background: #FDE68A;
+color: #92400E;
+opacity: 0.9;
+
+}
+
+/* Title */
+.hero-title {
+  font-family: Poppins, sans-serif;
+  font-size: 52px;
+  font-weight: 700;
+  line-height: 1.18;
+  color: #fff;
+  margin: 18px 0;
+}
+.hero-title a { color: #fff; text-decoration: none; }
+.hero-title a:hover { text-decoration: underline; }
+
+/* Excerpt */
+.hero-excerpt {
+  font-family: Montserrat, sans-serif;
+  font-size: 18px;
+  color: #C8D4E3;
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+/* Button */
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+.hero-btn {
+  display: inline-flex;
+  background: #0EA5A8;
+  color: #fff;
+  border-radius: 8px;
+  padding: 13px 18px;
+  font-family: Poppins, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+}
+.hero-btn:hover { background: #0B8F92; color: #fff; }
+
+.hero-btn-secondary {
+  background: #fff;
+  color: #0D1B2A;
+  border: 1px solid #D7DEE8;
+}
+.hero-btn-secondary:hover { background: #F3F4F6;
+}
+
+/* Image */
+.hero-image-wrap { line-height: 0; }
+.hero-img {
+  border-radius: 8px;
+  min-height: 360px;
+  object-fit: cover;
+  width: 100%;
+}
+.hero-image-fallback {
+  min-height: 360px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #12324D, #0E4A4C);
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font: 600 15px Poppins, sans-serif;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-title { font-size: 38px; }
+}
+
+/*____latest_article_section__*/
+/* Section head */
+.la-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 24px;
+  margin-bottom: 26px;
+}
+.la-head h2 {
+  font-family: Poppins, sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.24;
+  margin: 0 0 10px;
+  color: #0D1B2A;
+}
+.la-head p {
+  font-family: Montserrat, sans-serif;
+  font-size: 16px;
+  color: #526173;
+  line-height: 1.7;
+  margin: 0;
+}
+.la-head-btn {
+  background: #fff;
+  color: #0D1B2A;
+  border: 1px solid #D7DEE8;
+  border-radius: 8px;
+  padding: 13px 18px;
+  font-family: Poppins, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.la-head-btn:hover { background: #F3F4F6; }
+
+/* Grid */
+.la-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+/* Card */
+.la-card {
+  background: #fff;
+  border: 1px solid #D7DEE8;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+}
+
+/* Thumbnail */
+.la-thumb {
+  height: 138px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+.la-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.la-thumb-fallback {
+  width: 100%;
+  height: 100%;
+  background: #243447;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font: 600 14px Poppins, sans-serif;
+}
+
+
+/* Category tag */
+.la-cat {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-family: Poppins, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  text-decoration: none;
+  margin-bottom: 8px;
+}
+
+.la-cat:hover {
+  opacity: 0.8;
+}
+
+/* Title */
+.la-title {
+  font-family: Poppins, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.35;
+  margin: 0 0 8px;
+}
+.la-title a {
+  color: #0D1B2A;
+  text-decoration: none;
+}
+.la-title a:hover { color: #0EA5A8; }
+
+/* Meta */
+.la-meta {
+  font-family: Montserrat, sans-serif;
+  font-size: 12px;
+  color: #64748B;
+  font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .la-grid { grid-template-columns: repeat(2, 1fr); }
+  .la-head { display: block; }
+  .la-head-btn { display: inline-block; margin-top: 12px; }
+}
+@media (max-width: 500px) {
+  .la-grid { grid-template-columns: 1fr; }
+}
+
+/*subscribe button bug fix*/
+@media (min-width: 768px) {
+    .frm-fluent-form .ff-t-cell {
+        display: initial;
+        flex-direction: column;
+        vertical-align: inherit;
+        width: 100%;
+    }
+}
+
+/*trending topics*/
+.la-grid-3 {
+  grid-template-columns: repeat(3, 1fr) !important;
+}
+
+/*category*/
+.fc-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+}
+
+.fc-card {
+  display: block;
+  text-decoration: none;
+  padding: 24px 16px;
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid rgba(0,0,0,.06);
+  transition: transform .2s, box-shadow .2s;
+}
+
+.fc-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(13,27,42,.1);
+}
+
+.fc-name {
+  font-family: Poppins, Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 4px;
+}
+
+.fc-count {
+  font-family: Montserrat, Arial, sans-serif;
+  font-size: 13px;
+  opacity: .7;
+}
+
+@media (max-width: x) {
+  .fc-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .fc-grid {
+    grid-template-columns: 1fr;
+  }
+}

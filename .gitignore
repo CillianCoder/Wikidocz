@@ -1,0 +1,66 @@
+# WordPress core
+/wp-admin/
+/wp-includes/
+index.php
+wp-activate.php
+wp-blog-header.php
+wp-comments-post.php
+wp-config-sample.php
+wp-config.php
+wp-cron.php
+wp-links-opml.php
+wp-load.php
+wp-login.php
+wp-mail.php
+wp-settings.php
+wp-signup.php
+wp-trackback.php
+xmlrpc.php
+license.txt
+readme.html
+
+# Server config
+.htaccess
+web.config
+
+# Uploads
+wp-content/uploads/
+
+# Cache
+wp-content/cache/
+
+# Upgrade temp
+wp-content/upgrade/
+
+# Languages
+wp-content/languages/
+
+# Debug
+wp-content/debug.log
+*.log
+
+# LocalWP
+/local/
+local-xdebuginfo.php
+local-phpinfo.php
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Generated files
+sitemap.xml
+sitemap.xml.gz
+robots.txt
+
+# Dependencies (any depth)
+vendor*/
+node_modules/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
