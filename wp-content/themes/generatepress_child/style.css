@@ -8,6 +8,30 @@
  Version:      0.1
 */
 
+/*── Top Navigation Bar ──*/
+.main-navigation .main-nav ul li a:hover,
+.main-navigation .main-nav ul li[class*="current-menu-"] > a:hover {
+    color: var(--descovery-hover, var(--discovery-hover)) !important;
+}
+
+
+/*tag nav bar*/
+.wp-block-navigation .wp-block-navigation-item__label{
+    border-radius: 999px;
+    padding: 7px 12px;
+    background: #11283D;
+    color: #D9F8F8;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-flex;
+    width: max-content;
+}
+.wp-block-navigation-item__label:hover{
+	color:var(--surface);
+	background-color: #123853;
+}
+
+
 input[type="search"] {
     border-radius: 8px;
 	background-color: #F3F4F6/* Change 8px to your desired roundness */
@@ -19,6 +43,22 @@ input[type="search"] {
 		width: 220px;
 	/* Adjust 12px to your liking (use 50% for a perfect circle) */
     object-fit: cover;
+}
+
+.site-footer .footer-widgets-container .inside-footer-widgets {
+     margin: 0;
+}
+
+.footer-widget-1{
+  display: flex;
+  flex-direction: column;
+  align-items: left;      /* Centers logo and slug horizontally */
+  justify-content: flex-start; /* Keeps the block aligned to the top */
+  text-align: left;         /* Centers the text lines within the slug */
+}
+
+.site-footer .footer-widgets-container .inner-padding {
+    padding: 0;
 }
 
 /*footer nav gap*/
@@ -237,14 +277,14 @@ opacity: 0.9;
   color: #fff;
   margin: 18px 0;
 }
-.hero-title a { color: #fff; text-decoration: none; }
-.hero-title a:hover { text-decoration: underline; }
+.hero-title a { color: var(--depth); text-decoration: none; }
+.hero-title a:hover { text-decoration: none; }
 
 /* Excerpt */
 .hero-excerpt {
   font-family: Montserrat, sans-serif;
   font-size: 18px;
-  color: #C8D4E3;
+  color: var(--global-color-8);
   line-height: 1.7;
   margin-bottom: 24px;
 }
@@ -269,7 +309,9 @@ opacity: 0.9;
   color: #0D1B2A;
   border: 1px solid #D7DEE8;
 }
-.hero-btn-secondary:hover { background: #F3F4F6;
+.hero-btn-secondary:hover { 
+	background: #F3F4F6;
+	color: inherit;
 }
 
 /* Image */
@@ -538,6 +580,10 @@ opacity: 0.9;
 .fc-card:hover::after {
   opacity: .8;
   transform: translateX(0);
+}
+
+.section-head a:hover{
+	background-color: inherit!important;
 }
 
 /* Featured Categories Responsive */
