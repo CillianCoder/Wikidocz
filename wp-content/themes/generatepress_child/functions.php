@@ -1,12 +1,28 @@
 <?php
 /**
-<?php
-/**
  * GeneratePress child theme functions and definitions.
  *
  * Add your custom PHP in this file.
  * Only edit this file if you have direct access to it on your server (to fix errors if they happen).
  */
+
+add_action( 'generate_after_header', 'wikidocz_category_tag_nav' );
+function wikidocz_category_tag_nav() {
+    $menu_items = wp_get_nav_menu_items( 'Nav_top2' );
+
+    if ( empty( $menu_items ) ) return;
+    ?>
+    <div class="topic-shell">
+        <div class="topic-bar">
+            <?php foreach ( $menu_items as $item ) : ?>
+                <a href="<?php echo esc_url( $item->url ); ?>">
+                    <?php echo esc_html( $item->title ); ?>
+                </a>
+            <?php endforeach; ?>
+        </div>
+    </div>
+    <?php
+}
 
 // Register the Featured Categories Shortcode
 add_shortcode('wikidocz_featured_categories', 'wikidocz_featured_categories_shortcode');
