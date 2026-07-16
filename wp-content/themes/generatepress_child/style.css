@@ -268,27 +268,10 @@ input[type="search"]:focus {
     }
 }
 
-/* Hide navigation bar completely on mobile only */
+/* Hide tag nav bar on mobile */
 @media (max-width: 768px) {
-    #site-navigation,
-    .main-navigation,
-    .mobile-menu-control-wrapper {
-        display: none !important;
-    }
-
-	.inside-header {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: center !important;
-        text-align: center !important;
-    }
-
-    .site-logo,
-    .header-image,
-    .site-branding {
-        margin: 0 auto !important;
-        float: none !important;
+    .topic-shell {
+        display: none;
     }
 }
 
@@ -521,6 +504,12 @@ opacity: 0.9;
 .la-grid-3 {
   grid-template-columns: repeat(3, 1fr) !important;
 }
+@media (max-width: 900px) {
+  .la-grid-3 { grid-template-columns: repeat(2, 1fr) !important; }
+}
+@media (max-width: 500px) {
+  .la-grid-3 { grid-template-columns: 1fr !important; }
+}
 
 /* ── Category Color Utility Classes ── */
 .tag-entertainment { background-color: #FFF1F2 !important; color: #E11D48 !important; }
@@ -640,10 +629,16 @@ opacity: 0.9;
   .fc-section {
     padding: 48px 0;
   }
+  .fc-section .section-head h2 {
+    font-size: 28px;
+  }
 }
 
 @media (max-width: 500px) {
   .fc-grid {
     grid-template-columns: 1fr;
+  }
+  .fc-section .section-head h2 {
+    font-size: 24px;
   }
 }
