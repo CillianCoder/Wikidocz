@@ -108,3 +108,10 @@ function wikidocz_featured_categories_shortcode($atts) {
     <?php
     return ob_get_clean();
 }
+
+add_action('pre_get_posts', 'wikidocz_category_posts_per_page');
+function wikidocz_category_posts_per_page($query) {
+    if ($query->is_category() && $query->is_main_query()) {
+        $query->set('posts_per_page', 13);
+    }
+}
