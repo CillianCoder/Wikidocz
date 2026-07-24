@@ -35,7 +35,7 @@ function wikidocz_featured_categories_shortcode($atts) {
             <p style="font-family: Montserrat, sans-serif; font-size: 16px; color: #526173; margin: 0;">Explore curated content across the topics that matter most.</p>
         </div>
         <div class="fc-grid" id="fc-grid">
-            
+
             <a class="fc-card" href="/category/entertainment/" style="--fc-bg:#FFF1F2;--fc-accent:#E11D48;--fc-glow:rgba(225,29,72,.12)">
                 <div class="fc-icon-wrap">
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/><line x1="17" y1="17" x2="22" y2="17"/></svg>
@@ -141,7 +141,7 @@ add_shortcode( 'hero_content', function( $atts ) {
         $cat_tag,
         esc_url( get_permalink() ),
         esc_html( get_the_title() ),
-        get_the_excerpt(),
+        wp_trim_words( get_the_excerpt(), 55, '...' ),
         esc_url( get_permalink() )
     );
     wp_reset_postdata();
