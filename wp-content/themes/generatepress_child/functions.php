@@ -115,3 +115,64 @@ function wikidocz_category_posts_per_page($query) {
         $query->set('posts_per_page', 13);
     }
 }
+
+add_shortcode( 'hero_content', function( $atts ) {
+    $a = shortcode_atts( [ 'post_id' => 0 ], $atts );
+    $args = $a['post_id']
+        ? [ 'p' => $a['post_id'], 'posts_per_page' => 1, 'post_type' => 'post' ]
+        : [ 'posts_per_page' => 1, 'orderby' => 'date', 'order' => 'DESC' ];
+    $query = new WP_Query( $args );
+    if ( ! $query->have_posts() ) {
+        return '<p style="color:#C8D4E3">No articles yet.</p>';
+    }
+    $query->the_post();
+    $categories = get_the_category();
+    $cat_tag    = '';
+    if ( ! empty( $categories ) ) {
+        $cat_id = $categories[0]->term_id;
+        $bg     = get_term_meta( $cat_id, 'cat_color', true ) ?: '#FFF4DA';
+        $text   = get_term_meta( $cat_id, 'cat_text_color', true ) ?: '#B45309';
+        $cat_tag = sprintf(
+            '<a href="%s" class="hero-cat-link" style="background:%s;color:%s">%s</a>',
+            esc_url( get_category_link( $cat_id ) ),
+            esc_attr( $bg ),
+            esc_attr( $text ),
+            esc_html( $categories[0]->name )
+        );
+    }
+    $output = sprintf(
+        '<div class="hero-cat">%s</div>
+         <h1 class="hero-title"><a href="%s">%s</a></h1>
+         <div class="hero-excerpt">%s</div>
+         <div class="hero-actions">
+           <a class="hero-btn" href="%s">Start reading</a>
+           <a class="hero-btn hero-btn-secondary" href="#fc-grid">Explore topics</a>
+         </div>',
+        $cat_tag,
+        esc_url( get_permalink() ),
+        esc_html( get_the_title() ),
+        wp_trim_words( get_the_excerpt(), 55, '...' ),
+        esc_url( get_permalink() )
+    );
+    wp_reset_postdata();
+    return $output;
+} );
+
+add_shortcode( 'hero_image', function( $atts ) {
+    $a = shortcode_atts( [ 'post_id' => 0 ], $atts );
+    $args = $a['post_id']
+        ? [ 'p' => $a['post_id'], 'posts_per_page' => 1, 'post_type' => 'post' ]
+        : [ 'posts_per_page' => 1, 'orderby' => 'date', 'order' => 'DESC' ];
+    $query = new WP_Query( $args );
+    if ( ! $query->have_posts() ) {
+        return '<div class="hero-image-fallback">Featured image</div>';
+    }
+    $query->the_post();
+    if ( has_post_thumbnail() ) {
+        $output = '<div class="hero-image-wrap">' . get_the_post_thumbnail( get_the_ID(), 'large', [ 'class' => 'hero-img' ] ) . '</div>';
+    } else {
+        $output = '<div class="hero-image-fallback">Featured image</div>';
+    }
+    wp_reset_postdata();
+    return $output;
+} );
