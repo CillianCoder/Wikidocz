@@ -113,6 +113,9 @@ function wikidocz_archive_posts_per_page($query) {
         if ($query->is_category() || $query->is_home()) {
             $query->set('posts_per_page', 13);
         }
+        if ($query->is_search()) {
+            $query->set('posts_per_page', 6);
+        }
     }
 }
 
@@ -140,6 +143,23 @@ function wikidocz_medium_read_where($where) {
     global $wpdb;
     $where .= " AND LENGTH({$wpdb->posts}.post_content) BETWEEN 5000 AND 10000";
     return $where;
+}
+
+add_action('pre_get_posts', 'wikidocz_search_order');
+function wikidocz_search_order($query) {
+    if (!$query->is_main_query() || !$query->is_search()) return;
+    $order = isset($_GET['order']) ? sanitize_key($_GET['order']) : '';
+    if (empty($order)) return;
+    switch ($order) {
+        case 'date':
+            $query->set('orderby', 'date');
+            $query->set('order', 'DESC');
+            break;
+        case 'popular':
+            $query->set('orderby', 'comment_count');
+            $query->set('order', 'DESC');
+            break;
+    }
 }
 
 add_shortcode( 'hero_content', function( $atts ) {
