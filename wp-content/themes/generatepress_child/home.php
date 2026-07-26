@@ -3,20 +3,15 @@ if (!defined('ABSPATH')) exit;
 
 get_header();
 
-$cat = get_queried_object();
-$cat_slug = $cat->slug;
-$cat_name = $cat->name;
-$cat_desc = category_description();
-$cat_url = get_category_link($cat->term_id);
-
 $filter = isset($_GET['filter']) ? sanitize_key($_GET['filter']) : '';
 $has_filter = !empty($filter);
+$articles_url = get_permalink(get_option('page_for_posts'));
 
-$section_title = sprintf('Latest in %s', esc_html($cat_name));
-$section_desc = 'More articles in this category';
+$section_title = 'Latest Articles';
+$section_desc = 'Explore our newest content';
 switch ($filter) {
     case 'popular':
-        $section_title = sprintf('Popular in %s', esc_html($cat_name));
+        $section_title = 'Popular Articles';
         $section_desc = 'Most discussed and engaged content';
         break;
     case 'editors-picks':
@@ -29,18 +24,11 @@ switch ($filter) {
         break;
 }
 
-function cat_read_time($pid = null) {
-    if (!$pid) $pid = get_the_ID();
-    $words = str_word_count(wp_strip_all_tags(get_post_field('post_content', $pid)));
-    return max(1, ceil($words / 200)) . ' min read';
-}
-
 $featured_id = null;
 if (!$has_filter) {
     $sticky_ids = get_option('sticky_posts');
     if (!empty($sticky_ids)) {
         $sticky_query = new WP_Query(array(
-            'category__in' => array($cat->term_id),
             'post__in' => $sticky_ids,
             'posts_per_page' => 1,
             'ignore_sticky_posts' => 1,
@@ -51,7 +39,6 @@ if (!$has_filter) {
     }
     if (!$featured_id) {
         $fallback = new WP_Query(array(
-            'category__in' => array($cat->term_id),
             'posts_per_page' => 1,
             'ignore_sticky_posts' => 1,
         ));
@@ -73,16 +60,13 @@ if (!$has_filter) {
     <section class="page-hero">
         <div class="wrap feature-grid">
             <div>
-                <span class="tag tag-<?php echo esc_attr($cat_slug); ?>"><?php echo esc_html($cat_name); ?></span>
-                <h1><?php echo esc_html($cat_name); ?></h1>
-                <?php if ($cat_desc) : ?>
-                    <p><?php echo wp_kses_post($cat_desc); ?></p>
-                <?php endif; ?>
+                <h1>Articles</h1>
+                <p>Curated insights, guides, and stories across technology, health, finance, and more.</p>
                 <div class="filter-row">
-                    <a href="<?php echo esc_url($cat_url); ?>" class="tag dark">Newest</a>
-                    <a href="<?php echo esc_url(add_query_arg('filter', 'popular', $cat_url)); ?>" class="tag <?php echo $filter === 'popular' ? 'dark' : 'outline'; ?>">Popular</a>
-                    <a href="<?php echo esc_url(add_query_arg('filter', 'editors-picks', $cat_url)); ?>" class="tag <?php echo $filter === 'editors-picks' ? 'dark' : 'outline'; ?>">Editor's picks</a>
-                    <a href="<?php echo esc_url(add_query_arg('filter', 'medium-read', $cat_url)); ?>" class="tag <?php echo $filter === 'medium-read' ? 'dark' : 'outline'; ?>">5-10 min reads</a>
+                    <a href="<?php echo esc_url($articles_url); ?>" class="tag dark">Newest</a>
+                    <a href="<?php echo esc_url(add_query_arg('filter', 'popular', $articles_url)); ?>" class="tag <?php echo $filter === 'popular' ? 'dark' : 'outline'; ?>">Popular</a>
+                    <a href="<?php echo esc_url(add_query_arg('filter', 'editors-picks', $articles_url)); ?>" class="tag <?php echo $filter === 'editors-picks' ? 'dark' : 'outline'; ?>">Editor's picks</a>
+                    <a href="<?php echo esc_url(add_query_arg('filter', 'medium-read', $articles_url)); ?>" class="tag <?php echo $filter === 'medium-read' ? 'dark' : 'outline'; ?>">5-10 min reads</a>
                 </div>
             </div>
 
@@ -97,7 +81,7 @@ if (!$has_filter) {
                 </div>
                 <span class="tag discovery">Featured</span>
                 <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-                <p class="meta"><?php echo get_the_date(); ?> &middot; <?php echo cat_read_time(); ?></p>
+                <p class="meta"><?php echo get_the_date(); ?> &middot; <?php echo wikidocz_read_time(); ?> min read</p>
             </article>
             <?php endif; ?>
         </div>
@@ -112,10 +96,10 @@ if (!$has_filter) {
     <section class="page-hero" style="padding:40px 0 32px;border-bottom:none;">
         <div class="wrap">
             <div class="filter-row">
-                <a href="<?php echo esc_url($cat_url); ?>" class="tag outline">Newest</a>
-                <a href="<?php echo esc_url(add_query_arg('filter', 'popular', $cat_url)); ?>" class="tag <?php echo $filter === 'popular' ? 'dark' : 'outline'; ?>">Popular</a>
-                <a href="<?php echo esc_url(add_query_arg('filter', 'editors-picks', $cat_url)); ?>" class="tag <?php echo $filter === 'editors-picks' ? 'dark' : 'outline'; ?>">Editor's picks</a>
-                <a href="<?php echo esc_url(add_query_arg('filter', 'medium-read', $cat_url)); ?>" class="tag <?php echo $filter === 'medium-read' ? 'dark' : 'outline'; ?>">5-10 min reads</a>
+                <a href="<?php echo esc_url($articles_url); ?>" class="tag outline">Newest</a>
+                <a href="<?php echo esc_url(add_query_arg('filter', 'popular', $articles_url)); ?>" class="tag <?php echo $filter === 'popular' ? 'dark' : 'outline'; ?>">Popular</a>
+                <a href="<?php echo esc_url(add_query_arg('filter', 'editors-picks', $articles_url)); ?>" class="tag <?php echo $filter === 'editors-picks' ? 'dark' : 'outline'; ?>">Editor's picks</a>
+                <a href="<?php echo esc_url(add_query_arg('filter', 'medium-read', $articles_url)); ?>" class="tag <?php echo $filter === 'medium-read' ? 'dark' : 'outline'; ?>">5-10 min reads</a>
             </div>
         </div>
     </section>
@@ -155,9 +139,11 @@ if (!$has_filter) {
                                 <span>Image</span>
                             <?php endif; ?>
                         </div>
-                        <span class="tag tag-<?php echo esc_attr($cat_slug); ?>"><?php echo esc_html($cat_name); ?></span>
+                        <?php $cats = get_the_category(); if (!empty($cats)) : ?>
+                            <a href="<?php echo esc_url(get_category_link($cats[0]->term_id)); ?>" class="tag tag-<?php echo esc_attr($cats[0]->slug); ?>"><?php echo esc_html($cats[0]->name); ?></a>
+                        <?php endif; ?>
                         <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-                        <p class="meta"><?php echo get_the_date(); ?> &middot; <?php echo cat_read_time(); ?></p>
+                        <p class="meta"><?php echo get_the_date(); ?> &middot; <?php echo wikidocz_read_time(); ?> min read</p>
                     </article>
                 <?php endwhile; ?>
             </div>

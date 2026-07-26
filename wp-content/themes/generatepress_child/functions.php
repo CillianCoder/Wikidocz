@@ -7,7 +7,7 @@
  */
 
 add_filter( 'generate_sidebar_layout', function( $layout ) {
-    if ( is_front_page() ) {
+    if ( is_front_page() || is_home() ) {
         return 'no-sidebar';
     }
     return $layout;
@@ -107,11 +107,39 @@ function wikidocz_featured_categories_shortcode($atts) {
     return ob_get_clean();
 }
 
-add_action('pre_get_posts', 'wikidocz_category_posts_per_page');
-function wikidocz_category_posts_per_page($query) {
-    if ($query->is_category() && $query->is_main_query()) {
-        $query->set('posts_per_page', 13);
+add_action('pre_get_posts', 'wikidocz_archive_posts_per_page');
+function wikidocz_archive_posts_per_page($query) {
+    if ($query->is_main_query()) {
+        if ($query->is_category() || $query->is_home()) {
+            $query->set('posts_per_page', 13);
+        }
     }
+}
+
+add_action('pre_get_posts', 'wikidocz_archive_filters');
+function wikidocz_archive_filters($query) {
+    if (!$query->is_main_query() || !($query->is_home() || $query->is_category())) return;
+    $filter = isset($_GET['filter']) ? sanitize_key($_GET['filter']) : '';
+    if (empty($filter)) return;
+    switch ($filter) {
+        case 'popular':
+            $query->set('orderby', 'comment_count');
+            $query->set('order', 'DESC');
+            break;
+        case 'editors-picks':
+            $query->set('tag', 'editor-pick');
+            break;
+        case 'medium-read':
+            add_action('posts_where', 'wikidocz_medium_read_where');
+            break;
+    }
+}
+
+function wikidocz_medium_read_where($where) {
+    remove_action('posts_where', 'wikidocz_medium_read_where');
+    global $wpdb;
+    $where .= " AND LENGTH({$wpdb->posts}.post_content) BETWEEN 5000 AND 10000";
+    return $where;
 }
 
 add_shortcode( 'hero_content', function( $atts ) {

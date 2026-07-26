@@ -695,19 +695,23 @@ opacity: 0.9;
 }
 
 /*── Category V2 ──*/
-body.category {
+body.category,
+body.blog {
   overflow-x: hidden;
 }
 
-body.category .site-content {
+body.category .site-content,
+body.blog .site-content {
   padding: 0 !important;
 }
 
-body.category .site-main {
+body.category .site-main,
+body.blog .site-main {
   margin: 0 !important;
 }
 
-body.category .page-hero {
+body.category .page-hero,
+body.blog .page-hero {
   background: #ffffff !important;
   width: 100vw;
   margin-left: calc(-50vw + 50%);
@@ -723,10 +727,12 @@ body.category .page-hero {
   margin: 16px 0;
 }
 
-body.category .section {
+body.category .section,
+body.blog .section {
   background: #F3F4F6 !important;
 }
-body.category .wrap {
+body.category .wrap,
+body.blog .wrap {
   padding: 0 40px;
 }
 .wrap {
@@ -759,6 +765,9 @@ body.category .wrap {
 }
 .tag.discovery { background: #DDF9F9; color: #087C80; }
 .tag.dark { background: #11283D; color: #D9F8F8; }
+a.tag:hover { opacity: 0.8; }
+.tag.outline { background: transparent; color: #526173; border: 1px solid #D7DEE8; }
+a.tag.outline:hover { background: #F3F4F6; }
 
 .card {
   background: #fff;
@@ -1061,12 +1070,12 @@ body.single .page-hero h1 {
 
 /* Single page featured image */
 body.single .page-hero .visual {
-  height: 420px;
   overflow: hidden;
 }
 body.single .page-hero .visual img {
   width: 100%;
-  height: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
   border-radius: 8px;
 }
