@@ -1,0 +1,29 @@
+<?php
+/**
+ * Wide card for search results.
+ */
+if ( ! defined( 'ABSPATH' ) ) exit;
+?>
+<article class="wide-card">
+    <div class="thumb">
+        <?php if ( has_post_thumbnail() ) : ?>
+            <?php the_post_thumbnail( 'medium' ); ?>
+        <?php else : ?>
+            <span>Result image</span>
+        <?php endif; ?>
+    </div>
+    <div>
+        <?php
+        $cats = get_the_category();
+        if ( ! empty( $cats ) ) :
+            $cat = $cats[0];
+            ?>
+            <a href="<?php echo esc_url( get_category_link( $cat->term_id ) ); ?>" class="tag tag-<?php echo esc_attr( $cat->slug ); ?>">
+                <?php echo esc_html( $cat->name ); ?>
+            </a>
+        <?php endif; ?>
+        <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+        <p><?php echo wp_trim_words( get_the_excerpt(), 25, '...' ); ?></p>
+        <p class="meta">By <?php the_author(); ?> &middot; <?php echo get_the_date(); ?> &middot; <?php echo wikidocz_read_time(); ?> min read</p>
+    </div>
+</article>

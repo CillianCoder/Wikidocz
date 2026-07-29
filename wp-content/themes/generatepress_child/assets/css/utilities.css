@@ -1,0 +1,9 @@
+/* ── Category Color Utility Classes ── */
+.tag-entertainment, .tag-entertainment:hover { background-color: #FFF1F2; color: #E11D48; }
+.tag-technology,    .tag-technology:hover    { background-color: #E0F2FE; color: #0284C7; }
+.tag-health,        .tag-health:hover        { background-color: #F0FDF4; color: #16A34A; }
+.tag-finance,       .tag-finance:hover       { background-color: #FFF7ED; color: #EA580C; }
+.tag-home,          .tag-home:hover          { background-color: #FDF4FF; color: #A855F7; }
+.tag-travel,        .tag-travel:hover        { background-color: #DDF9F9; color: #0EA5A8; }
+.tag-learning,      .tag-learning:hover      { background-color: #FFF4DA; color: #B45309; }
+.tag-lifestyle,     .tag-lifestyle:hover     { background-color: #F0F4FF; color: #4F46E5; }

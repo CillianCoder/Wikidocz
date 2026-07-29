@@ -1,0 +1,86 @@
+/* ── Category Tag Nav Bar ── */
+.topic-shell {
+  background: var(--color-brand-primary);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.topic-bar {
+  max-width: var(--layout-content);
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+  min-height: 76px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-xs);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.topic-bar a {
+  flex: 0 0 auto;
+  border-radius: var(--radius-full);
+  padding: 9px 14px;
+  font-family: var(--font-heading);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  text-decoration: none;
+  white-space: nowrap;
+  color: var(--color-pill-text);
+  background: var(--color-pill-bg);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: background 0.2s, color 0.2s;
+  display: inline-flex;
+  align-items: center;
+}
+
+.topic-bar a:hover {
+  background: var(--color-bg-dark);
+  color: #fff;
+}
+
+@media (max-width: 640px) {
+  .topic-bar {
+    justify-content: flex-start;
+    min-height: 64px;
+  }
+}
+
+/* ── Top Navigation Bar ── */
+.main-navigation .main-nav ul li a:hover,
+.main-navigation .main-nav ul li[class*="current-menu-"] > a:hover {
+  color: var(--color-brand-secondary);
+}
+
+.main-navigation li,
+.main-navigation .main-nav ul li a {
+  line-height: 30px;
+}
+
+/* ── Block Navigation Pills ── */
+.wp-block-navigation .wp-block-navigation-item__label {
+  border-radius: var(--radius-full);
+  padding: 7px 12px;
+  background: var(--color-pill-bg);
+  color: var(--color-pill-text);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  display: inline-flex;
+  width: max-content;
+}
+
+.wp-block-navigation-item__label:hover {
+  color: var(--color-surface);
+  background-color: var(--color-bg-dark);
+}
+
+/* ── Mobile Nav ── */
+@media (max-width: 768px) {
+  .main-navigation .main-nav ul {
+    display: none;
+  }
+
+  .main-navigation.toggled .main-nav ul {
+    display: block;
+  }
+}

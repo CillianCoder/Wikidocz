@@ -1,0 +1,51 @@
+:root {
+  /* ── Reuse GP Customizer vars ── */
+  --color-surface:         var(--surface);
+  --color-text-primary:    var(--text);
+  --color-text-muted:      var(--muted);
+
+  /* ── Brand colors ── */
+  --color-brand-primary:   #0D1B2A;
+  --color-brand-secondary: #0EA5A8;
+  --color-brand-hover:     #0B8F92;
+  /* ── Text ── */
+  --color-text-body:       #1F2937;
+  --color-text-meta:       #64748B;
+
+  /* ── Backgrounds ── */
+  --color-bg-light:        #F3F4F6;
+  --color-bg-dark:         #12324D;
+  --color-pill-bg:         #11283D;
+  --color-pill-text:       #D9F8F8;
+
+  /* ── Borders ── */
+  --color-border:          #D7DEE8;
+
+  /* ── Typography ── */
+  --font-heading:          Poppins, sans-serif;
+  --font-body:             Montserrat, sans-serif;
+  --font-size-h1:          clamp(36px, 5vw, 52px);
+  --font-size-h2:          34px;
+  --font-size-h3:          22px;
+  --font-size-card:        18px;
+  --font-size-body:        16px;
+  --font-size-small:       13px;
+  --font-size-xs:          12px;
+  --font-weight-bold:      700;
+  --font-weight-semibold:  600;
+
+  /* ── Spacing (base-8 grid) ── */
+  --spacing-xs:            8px;
+  --spacing-sm:            16px;
+  --spacing-md:            24px;
+  --spacing-lg:            32px;
+  --spacing-xl:            48px;
+  --spacing-2xl:           72px;
+
+  /* ── Border radius ── */
+  --radius-sm:             8px;
+  --radius-full:           999px;
+
+  /* ── Layout ── */
+  --layout-content:        1200px;
+}
