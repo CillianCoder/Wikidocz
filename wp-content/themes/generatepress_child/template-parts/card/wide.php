@@ -7,9 +7,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 <article class="wide-card">
     <div class="thumb">
         <?php if ( has_post_thumbnail() ) : ?>
-            <?php the_post_thumbnail( 'medium' ); ?>
+            <a href="<?php the_permalink(); ?>"><?php the_post_thumbnail( 'medium' ); ?></a>
         <?php else : ?>
-            <span>Result image</span>
+            <a href="<?php the_permalink(); ?>"><span>Result image</span></a>
         <?php endif; ?>
     </div>
     <div>

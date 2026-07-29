@@ -8,9 +8,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 <article class="card">
     <div class="thumb">
         <?php if ( has_post_thumbnail() ) : ?>
-            <?php the_post_thumbnail( 'medium_large' ); ?>
+            <a href="<?php the_permalink(); ?>"><?php the_post_thumbnail( 'medium_large' ); ?></a>
         <?php else : ?>
-            <span>Featured image</span>
+            <a href="<?php the_permalink(); ?>"><span>Featured image</span></a>
         <?php endif; ?>
     </div>
     <span class="tag discovery">Featured</span>

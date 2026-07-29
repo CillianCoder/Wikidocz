@@ -59,9 +59,9 @@ function wikidocz_related_posts_grid( $post_id ) {
                 <article class="card">
                     <div class="thumb">
                         <?php if ( has_post_thumbnail() ) : ?>
-                            <?php the_post_thumbnail( 'medium' ); ?>
+                            <a href="<?php the_permalink(); ?>"><?php the_post_thumbnail( 'medium' ); ?></a>
                         <?php else : ?>
-                            <div style="display:grid;place-items:center;min-height:156px;color:#64748B;">Image</div>
+                            <a href="<?php the_permalink(); ?>"><div style="display:grid;place-items:center;min-height:156px;color:#64748B;">Image</div></a>
                         <?php endif; ?>
                     </div>
                     <?php $c = get_the_category(); if ( ! empty( $c ) ) : ?>
