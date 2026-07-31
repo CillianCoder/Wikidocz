@@ -26,6 +26,9 @@ web.config
 # Uploads
 wp-content/uploads/
 
+# Plugins
+wp-content/plugins/
+
 # Cache
 wp-content/cache/
 

@@ -83,3 +83,12 @@ function wikidocz_add_heading_ids( $content ) {
         $content
     );
 }
+
+/**
+ * Tell Rank Math the site's TOC (theme-generated sidebar) counts as a TOC provider.
+ * Slug must match an active plugin; Rank Math only checks presence in active_plugins.
+ */
+add_filter( 'rank_math/researches/toc_plugins', function( $toc_plugins ) {
+    $toc_plugins['code-snippets/code-snippets.php'] = 'Theme TOC (via Code Snippets)';
+    return $toc_plugins;
+} );
