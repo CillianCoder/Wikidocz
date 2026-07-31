@@ -59,6 +59,12 @@ body.page .section {
   padding: 58px 0;
 }
 
+/* Category/home hero: tighter padding so featured card title stays above fold */
+body.category .page-hero,
+body.blog .page-hero {
+  padding: 28px 0;
+}
+
 .page-hero h1 {
   font-family: var(--font-heading);
   font-size: var(--font-size-h1);

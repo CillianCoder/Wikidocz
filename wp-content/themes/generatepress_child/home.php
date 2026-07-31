@@ -58,8 +58,8 @@ if ( ! $has_filter ) {
     <?php if ( ! is_paged() && ! $has_filter ) : ?>
         <?php
         get_template_part( 'template-parts/hero/full', null, array(
-            'title'           => 'Articles',
-            'description'     => 'Curated insights, guides, and stories across technology, health, finance, and more.',
+            'title'           => 'Latest Articles',
+            'description'     => 'Explore practical guides, expert tips, and in-depth articles on finance, technology, health, travel, home, education, and lifestyle. Learn useful ideas to improve everyday life.',
             'filter_urls'     => array(
                 'newest'        => $articles_url,
                 'popular'       => add_query_arg( 'filter', 'popular', $articles_url ),
